@@ -1,6 +1,6 @@
-package by.springmvc.controller;
+package by.thymeleaf.controller;
 
-import by.springmvc.model.User;
+import by.thymeleaf.model.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;

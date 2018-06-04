@@ -1,4 +1,4 @@
-package by.springmvc.model;
+package by.thymeleaf.model;
 
 public class User {
     String firstName ;
