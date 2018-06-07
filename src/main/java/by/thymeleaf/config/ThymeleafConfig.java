@@ -2,19 +2,20 @@ package by.thymeleaf.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 import org.thymeleaf.templatemode.TemplateMode;
 
 @Configuration
-public class ThymeleafConfig {
+public class ThymeleafConfig  implements WebMvcConfigurer {
     @Bean
     public SpringResourceTemplateResolver templateResolver(){
         SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
         templateResolver.setPrefix("/WEB-INF/templates/");
         templateResolver.setSuffix(".html");
-        templateResolver.setTemplateMode(TemplateMode.HTML);
         return templateResolver;
     }
 
@@ -33,7 +34,7 @@ public class ThymeleafConfig {
         return templateEngine;
     }
 
-    @Bean
+   /* @Bean
     public ThymeleafViewResolver viewResolver(){
         ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
         viewResolver.setTemplateEngine(templateEngine());
@@ -41,5 +42,11 @@ public class ThymeleafConfig {
         viewResolver.setOrder(1);
         viewResolver.setViewNames(new String[] {".html", ".xhtml"});
         return viewResolver;
-    }
+    }*/
+   @Override
+   public void configureViewResolvers(ViewResolverRegistry registry) {
+       ThymeleafViewResolver resolver = new ThymeleafViewResolver();
+       resolver.setTemplateEngine(templateEngine());
+       registry.viewResolver(resolver);
+   }
 }
