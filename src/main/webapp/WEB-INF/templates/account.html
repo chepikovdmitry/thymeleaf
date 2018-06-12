@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-      xmlns="http://www.w3.org/1999/html">
+<html th:lang="${#locale.language}" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -11,6 +10,7 @@
     <p th:text="${account.number}">number</p>
     <p th:each="accountType : ${account.types}" th:text="${#strings.toLowerCase(accountType)}">number</p>
 </h1>-->
+<h1 th:text="#{test}">qwert</h1>
      <form th:action="@{/account}" method="post" th:object="${account}">
          <label for="number">Number</label>
         <input type="text" th:field="*{number}" id="number">
@@ -23,7 +23,7 @@
                  <input type="checkbox" th:value="${accountType}" th:field="*{types}"><span th:text="${accountType}">accountType</span></input>
              </li>
          </ul>
-         <button type="submit">Save action</button>
+         <button type="submit">Сохранить</button>
      </form>
 </body>
 </html>
